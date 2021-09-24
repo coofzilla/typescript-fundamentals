@@ -10,3 +10,50 @@ const add = (a: number, b: number): number => {
 const subtract = (a: number, b: number) => {
   a - b;
 };
+
+function divide(a: number, b: number): number {
+  return a / b;
+}
+
+const multiply = function (a: number, b: number): number {
+  return a * b;
+};
+
+const logger = (message: string): void => {
+  console.log('hi', message);
+};
+logger('you');
+
+//only use if expect to truly return nothing
+const throwError = (message: string): never => {
+  throw new Error(message);
+};
+
+const forecast = {
+  date: new Date(),
+  weather: 'sunny',
+};
+//destructuring
+//ES2015
+// const logWeather = ({ date, weather }) => {
+//   console.log(date);
+//   console.log(weather);
+// };
+//no destructuring
+// const logWeather = (forecast: { date: Date; weather: string }): void => {
+//   console.log(forecast.date);
+//   console.log(forecast.weather);
+// };
+// logWeather(forecast);
+//with destructuring
+const logWeather = ({
+  date,
+  weather,
+}: {
+  date: Date;
+  weather: string;
+}): void => {
+  console.log(date);
+  console.log(weather);
+};
+logWeather(forecast);
