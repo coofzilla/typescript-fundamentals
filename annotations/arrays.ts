@@ -1,3 +1,4 @@
+//use typed arrays when need to represent a collection of records with some arbitrary sort order
 const carMakers: string[] = ['ford', 'toyota', 'chevy'];
 const dates = [new Date(), new Date()];
 
@@ -13,3 +14,9 @@ const myCar = carMakers.pop();
 carMakers.map((car: string): string => {
   return car;
 });
+
+//flexible types
+const importantDates: (Date | string)[] = [];
+
+importantDates.push('2030-10-9');
+importantDates.push(new Date());
