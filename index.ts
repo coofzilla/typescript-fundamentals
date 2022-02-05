@@ -1,3 +1,8 @@
+//how to execute
+
+// tsc index.ts
+// node index.js
+// ts-node index.ts using ts-node 
 import axios from 'axios';
 
 const url = 'https://jsonplaceholder.typicode.com/todos/1';

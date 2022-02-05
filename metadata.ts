@@ -1,13 +1,41 @@
 import 'reflect-metadata';
 
-const plane = {
-  color: 'red',
-};
+@controller
+class Plane {
+  color: string = 'red';
 
-Reflect.defineMetadata('subcolor', 'dark-red', plane, 'color');
+  @get('/login')
+  fly(): void {
+    console.log('vrrrr');
+  }
+}
 
-const subcolor = Reflect.getMetadata('subcolor', plane, 'color');
-console.log(subcolor);
+function get(path: string) {
+  return function (target: Plane, key: string) {
+    //last argument key is the key of the object you wish to access
+    Reflect.defineMetadata('path', path, target, key);
+  };
+}
+
+function controller(target: typeof Plane) {
+  for (let key in target.prototype) {
+    const path = Reflect.getMetadata('path', target.prototype, key);
+    console.log(path)
+  }
+}
+
+// const secret = Reflect.getMetadata('secret', Plane.prototype, 'fly');
+
+// console.log(secret);
+
+// const plane = {
+//   color: 'red',
+// };
+
+// Reflect.defineMetadata('subcolor', 'dark-red', plane, 'color');
+
+// const subcolor = Reflect.getMetadata('subcolor', plane, 'color');
+// console.log(subcolor);
 
 // //first arg 'note' key f/meta data, value is second 'hi there', associated w/plane
 // Reflect.defineMetadata('note', 'hi there', plane);
